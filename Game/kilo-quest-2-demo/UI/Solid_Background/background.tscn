@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpmpv7nldxxfs"]
+
+[ext_resource type="Script" uid="uid://ceuemi8ii3o2x" path="res://UI/Solid_Background/Solid_Background.gd" id="1_yehmj"]
+
+[node name="Background" type="ColorRect"]
+z_index = -5
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.5
+offset_right = 160.5
+offset_bottom = 179.0
+grow_horizontal = 2
+scale = Vector2(1.28, 1.96)
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_yehmj")

@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://i328rfbscxky"]
+
+[ext_resource type="Script" uid="uid://5pca4lestbyr" path="res://Characters/Player/Kilo/knife.gd" id="1_7alnu"]
+[ext_resource type="Texture2D" uid="uid://dryci1b46ccmr" path="res://Art/Characters/Kilo/KnifeSphere/Knife.png" id="2_hoiji"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hdxxf"]
+radius = 5.09902
+
+[node name="Knife" type="Area2D" node_paths=PackedStringArray("break_particle", "sprite") groups=["Knife"]]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_7alnu")
+break_particle = NodePath("BreakParticle")
+sprite = NodePath("Sprite2D")
+speed = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_hoiji")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_hdxxf")
+
+[node name="BreakParticle" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+initial_velocity_min = 21.7
+initial_velocity_max = 41.9
+angular_velocity_min = -101.82
+angular_velocity_max = -101.82
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="BreakParticle" to="." method="_on_break_particle_finished"]

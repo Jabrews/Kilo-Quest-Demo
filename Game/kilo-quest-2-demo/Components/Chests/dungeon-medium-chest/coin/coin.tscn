@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=3 uid="uid://b4vo6rcjtpne7"]
+
+[ext_resource type="Script" uid="uid://dk4kw25iol8dh" path="res://Components/Chests/dungeon-medium-chest/coin/coin.gd" id="1_tn3ow"]
+[ext_resource type="Texture2D" uid="uid://crgvyffwp6yfp" path="res://Art/Chest/medium-dungeon-chest/one-coins.png" id="2_cwgpq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4w1h"]
+atlas = ExtResource("2_cwgpq")
+region = Rect2(0, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_by25t"]
+atlas = ExtResource("2_cwgpq")
+region = Rect2(7, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_faf1c"]
+atlas = ExtResource("2_cwgpq")
+region = Rect2(14, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5r4p"]
+atlas = ExtResource("2_cwgpq")
+region = Rect2(21, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_so76x"]
+atlas = ExtResource("2_cwgpq")
+region = Rect2(28, 0, 7, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_un4hf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4w1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_by25t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_faf1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5r4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_so76x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tn3ow"]
+radius = 4.0
+height = 18.0
+
+[node name="Coin" type="Area2D" node_paths=PackedStringArray("particle", "Sprite", "CollectDelayTimer")]
+collision_layer = 0
+script = ExtResource("1_tn3ow")
+initial_speed = 50.0
+angle = 40.0
+grav = 250.0
+particle = NodePath("CPUParticles2D")
+Sprite = NodePath("AnimatedSprite2D")
+CollectDelayTimer = NodePath("CollectDelayTimer")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_un4hf")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_tn3ow")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 15
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+gravity = Vector2(0, 2)
+initial_velocity_max = 71.19
+angular_velocity_min = -120.0
+angular_velocity_max = -120.0
+color = Color(0.513726, 0.458824, 0.337255, 1)
+
+[node name="CollectDelayTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="CPUParticles2D" to="." method="_on_cpu_particles_2d_finished"]
+[connection signal="timeout" from="CollectDelayTimer" to="." method="_on_collect_delay_timer_timeout"]

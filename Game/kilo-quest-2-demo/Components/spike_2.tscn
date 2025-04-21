@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bw7wxgdf76l7f"]
+
+[ext_resource type="Script" uid="uid://c1jdsc45p3nml" path="res://Components/spike_2.gd" id="1_bw58f"]
+[ext_resource type="Texture2D" uid="uid://dv8so73ffu0pl" path="res://Art/Tiles/Dungeon_Tiles/Spike.png" id="1_op7oj"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fsgcp"]
+texture = ExtResource("1_op7oj")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 0, -8, 8, 8, 8, 8)
+
+[sub_resource type="TileSet" id="TileSet_ofmd5"]
+physics_layer_0/collision_layer = 16
+physics_layer_0/collision_mask = 6
+sources/0 = SubResource("TileSetAtlasSource_fsgcp")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tuwnp"]
+size = Vector2(65, 16)
+
+[node name="Spike2" type="Area2D"]
+collision_layer = 16
+collision_mask = 6
+script = ExtResource("1_bw58f")
+
+[node name="Spike" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray(0, 0, 249, 255, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 248, 255, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 247, 255, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 246, 255, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_ofmd5")
+
+[node name="Spike1" type="CollisionShape2D" parent="."]
+position = Vector2(-127.5, 103)
+shape = SubResource("RectangleShape2D_tuwnp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

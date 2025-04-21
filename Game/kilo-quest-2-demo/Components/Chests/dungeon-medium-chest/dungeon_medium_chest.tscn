@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=3 uid="uid://b2ewlgproc2nk"]
+
+[ext_resource type="Texture2D" uid="uid://dghjkd183003u" path="res://Art/Chest/medium-dungeon-chest/medium-chest-dungeon.png" id="1_equra"]
+[ext_resource type="Script" uid="uid://duyl8bng807vd" path="res://Components/Chests/dungeon-medium-chest/dungeon_medium_chest.gd" id="1_jy7bd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxyw8"]
+atlas = ExtResource("1_equra")
+region = Rect2(140, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jy7bd"]
+atlas = ExtResource("1_equra")
+region = Rect2(0, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_psrhr"]
+atlas = ExtResource("1_equra")
+region = Rect2(35, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qg8xu"]
+atlas = ExtResource("1_equra")
+region = Rect2(70, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22ikf"]
+atlas = ExtResource("1_equra")
+region = Rect2(105, 0, 35, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cnkgb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxyw8")
+}],
+"loop": true,
+"name": &"finished",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jy7bd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jy7bd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_psrhr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qg8xu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22ikf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxyw8")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_equra"]
+size = Vector2(41, 23)
+
+[node name="Chest" type="Area2D" node_paths=PackedStringArray("Sprite")]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_jy7bd")
+total_coins = 5.5
+Sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cnkgb")
+animation = &"open"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 4.5)
+shape = SubResource("RectangleShape2D_equra")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

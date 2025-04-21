@@ -1,0 +1,147 @@
+[gd_scene load_steps=15 format=3 uid="uid://tcwagokumxbp"]
+
+[ext_resource type="Script" uid="uid://uegbv2psctqo" path="res://UI/Stat_Ui/Heart_Ui/heart_ui.gd" id="1_mksjp"]
+[ext_resource type="Texture2D" uid="uid://c7ix37q5g54r0" path="res://Art/UI/CombatUi/Hearts/Heart_dead.png" id="2_mksjp"]
+[ext_resource type="Texture2D" uid="uid://k1rsyiqxiwbc" path="res://Art/UI/CombatUi/Hearts/Heart_alive.png" id="3_lx884"]
+[ext_resource type="Script" uid="uid://jyalsg44odf8" path="res://UI/Stat_Ui/knife.gd" id="4_ej8vu"]
+[ext_resource type="Texture2D" uid="uid://bheycuivr1s6i" path="res://Art/UI/CombatUi/KnifeUi/KnifeUI.png" id="4_lx884"]
+[ext_resource type="AudioStream" uid="uid://dc4ggxaj077r0" path="res://sounds/kilo/kilo_hurt.mp3" id="6_hwkji"]
+[ext_resource type="AudioStream" uid="uid://c1jr7akjyws5g" path="res://sounds/Knife/Knife_gained.mp3" id="7_vrk46"]
+[ext_resource type="Script" uid="uid://bdgc8f44x8m3j" path="res://UI/Stat_Ui/Coin_Ui/coins.gd" id="8_n2f70"]
+[ext_resource type="Texture2D" uid="uid://crgvyffwp6yfp" path="res://Art/Chest/medium-dungeon-chest/one-coins.png" id="8_r151g"]
+[ext_resource type="FontFile" uid="uid://3kd0010ik0d6" path="res://Art/fonts/pansyhand.ttf" id="9_6prog"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1alu"]
+atlas = ExtResource("2_mksjp")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqf36"]
+atlas = ExtResource("3_lx884")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ej8vu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1alu")
+}],
+"loop": true,
+"name": &"Empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqf36")
+}],
+"loop": true,
+"name": &"Full",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n2f70"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Player_Ui" type="CanvasLayer"]
+offset = Vector2(50, 50)
+scale = Vector2(5, 5)
+transform = Transform2D(5, 0, 0, 5, 50, 50)
+
+[node name="Ui_Root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Health" type="HBoxContainer" parent="Ui_Root" node_paths=PackedStringArray("grace_period_timer", "player_hurt_streamer")]
+layout_mode = 1
+offset_left = -3.11897
+offset_top = -5.68
+offset_right = -3.11897
+offset_bottom = -5.68
+scale = Vector2(0.728103, 0.632)
+pivot_offset = Vector2(10, 10)
+script = ExtResource("1_mksjp")
+grace_period_timer = NodePath("../GracePeriodTimer")
+player_hurt_streamer = NodePath("../PlayerHurtStreamer")
+
+[node name="Heart1" type="AnimatedSprite2D" parent="Ui_Root/Health"]
+sprite_frames = SubResource("SpriteFrames_ej8vu")
+animation = &"Full"
+autoplay = "Full"
+
+[node name="Heart2" type="AnimatedSprite2D" parent="Ui_Root/Health"]
+position = Vector2(19, 0)
+sprite_frames = SubResource("SpriteFrames_ej8vu")
+animation = &"Full"
+autoplay = "Full"
+
+[node name="Heart3" type="AnimatedSprite2D" parent="Ui_Root/Health"]
+position = Vector2(38, 0)
+sprite_frames = SubResource("SpriteFrames_ej8vu")
+animation = &"Full"
+autoplay = "Full"
+
+[node name="GracePeriodTimer" type="Timer" parent="Ui_Root"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Knife" type="HBoxContainer" parent="Ui_Root" node_paths=PackedStringArray("knife_gained_streamer")]
+layout_mode = 1
+offset_left = -3.11897
+offset_top = 5.52
+offset_right = 36.881
+offset_bottom = 45.52
+scale = Vector2(0.728103, 0.632)
+pivot_offset = Vector2(10, 10)
+script = ExtResource("4_ej8vu")
+knife_gained_streamer = NodePath("../KnifeGainedStreamer")
+
+[node name="Knife1" type="Sprite2D" parent="Ui_Root/Knife"]
+texture = ExtResource("4_lx884")
+
+[node name="Knife2" type="Sprite2D" parent="Ui_Root/Knife"]
+position = Vector2(18.8, 0)
+texture = ExtResource("4_lx884")
+
+[node name="Knife3" type="Sprite2D" parent="Ui_Root/Knife"]
+position = Vector2(38, 0)
+texture = ExtResource("4_lx884")
+
+[node name="Knife4" type="Sprite2D" parent="Ui_Root/Knife"]
+position = Vector2(55.6, 0)
+texture = ExtResource("4_lx884")
+
+[node name="PlayerHurtStreamer" type="AudioStreamPlayer2D" parent="Ui_Root"]
+stream = ExtResource("6_hwkji")
+
+[node name="KnifeGainedStreamer" type="AudioStreamPlayer2D" parent="Ui_Root"]
+stream = ExtResource("7_vrk46")
+volume_db = -5.027
+
+[node name="Coins" type="HBoxContainer" parent="." node_paths=PackedStringArray("label")]
+offset_left = 214.0
+offset_top = -29.2
+offset_right = 264.0
+offset_bottom = 20.8
+scale = Vector2(1.07789, 1.08515)
+script = ExtResource("8_n2f70")
+label = NodePath("Label")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins"]
+position = Vector2(-5.93749, 25.0658)
+scale = Vector2(0.77019, 1.01711)
+texture = ExtResource("8_r151g")
+hframes = 5
+
+[node name="Label" type="Label" parent="Coins"]
+layout_mode = 2
+theme_override_constants/paragraph_spacing = 8
+theme_override_fonts/font = ExtResource("9_6prog")
+text = " $0.0"
+label_settings = SubResource("LabelSettings_n2f70")
+paragraph_separator = ".n"
+
+[connection signal="timeout" from="Ui_Root/GracePeriodTimer" to="Ui_Root/Health" method="_on_grace_period_timer_timeout"]

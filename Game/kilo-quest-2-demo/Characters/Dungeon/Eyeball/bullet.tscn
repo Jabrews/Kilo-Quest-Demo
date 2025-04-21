@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://cd3dgd4jyqsw0"]
+
+[ext_resource type="Script" uid="uid://dhgtfqkglm5c0" path="res://Characters/Dungeon/Eyeball/bullet.gd" id="1_0eeoi"]
+[ext_resource type="Texture2D" uid="uid://bo7o1syjk68dr" path="res://Art/Characters/Dungeon_Creatures/Eyeball/Eyeball.png" id="1_ythad"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ythad"]
+radius = 6.08276
+
+[node name="Bullet" type="Area2D" node_paths=PackedStringArray("Dust", "Sprite")]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_0eeoi")
+speed = 300.0
+Dust = NodePath("Dust Particle")
+Sprite = NodePath("Sprite2Dw")
+
+[node name="Sprite2Dw" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_ythad")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ythad")
+
+[node name="Dust Particle" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 3.0
+one_shot = true
+speed_scale = 0.1
+explosiveness = 1.0
+direction = Vector2(1, -1)
+spread = 180.0
+gravity = Vector2(0, -100)
+initial_velocity_min = 312.84
+initial_velocity_max = 383.54
+damping_min = 0.5
+damping_max = 3.75
+scale_amount_min = 1.5
+scale_amount_max = 1.5
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

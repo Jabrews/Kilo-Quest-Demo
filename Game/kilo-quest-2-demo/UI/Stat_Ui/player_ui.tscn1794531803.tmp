@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=3 uid="uid://tcwagokumxbp"]
+
+[ext_resource type="Script" uid="uid://uegbv2psctqo" path="res://UI/Stat_Ui/Heart_Ui/heart_ui.gd" id="1_mksjp"]
+[ext_resource type="Texture2D" uid="uid://c7ix37q5g54r0" path="res://Art/UI/CombatUi/Hearts/Heart_dead.png" id="2_mksjp"]
+[ext_resource type="Texture2D" uid="uid://k1rsyiqxiwbc" path="res://Art/UI/CombatUi/Hearts/Heart_alive.png" id="3_lx884"]
+[ext_resource type="Script" uid="uid://jyalsg44odf8" path="res://UI/Stat_Ui/knife.gd" id="4_ej8vu"]
+[ext_resource type="Texture2D" uid="uid://bheycuivr1s6i" path="res://Art/UI/CombatUi/KnifeUi/KnifeUI.png" id="4_lx884"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1alu"]
+atlas = ExtResource("2_mksjp")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqf36"]
+atlas = ExtResource("3_lx884")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ej8vu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1alu")
+}],
+"loop": true,
+"name": &"Empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqf36")
+}],
+"loop": true,
+"name": &"Full",
+"speed": 5.0
+}]
+
+[node name="Player_Ui" type="CanvasLayer"]
+offset = Vector2(50, 50)
+scale = Vector2(5, 5)
+transform = Transform2D(5, 0, 0, 5, 50, 50)
+
+[node name="Ui_Root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Health" type="HBoxContainer" parent="Ui_Root" node_paths=PackedStringArray("grace_period_timer")]
+layout_mode = 1
+pivot_offset = Vector2(10, 10)
+script = ExtResource("1_mksjp")
+grace_period_timer = NodePath("../GracePeriodTimer")
+
+[node name="Heart1" type="AnimatedSprite2D" parent="Ui_Root/Health"]
+sprite_frames = SubResource("SpriteFrames_ej8vu")
+animation = &"Full"
+autoplay = "Full"
+
+[node name="Heart2" type="AnimatedSprite2D" parent="Ui_Root/Health"]
+position = Vector2(19, 0)
+sprite_frames = SubResource("SpriteFrames_ej8vu")
+animation = &"Full"
+autoplay = "Full"
+
+[node name="Heart3" type="AnimatedSprite2D" parent="Ui_Root/Health"]
+position = Vector2(38, 0)
+sprite_frames = SubResource("SpriteFrames_ej8vu")
+animation = &"Full"
+autoplay = "Full"
+
+[node name="GracePeriodTimer" type="Timer" parent="Ui_Root"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Knife" type="HBoxContainer" parent="Ui_Root" node_paths=PackedStringArray("Knife_Reload_Timer")]
+layout_mode = 1
+offset_top = 18.8
+offset_right = 40.0
+offset_bottom = 58.8
+pivot_offset = Vector2(10, 10)
+script = ExtResource("4_ej8vu")
+Knife_Reload_Timer = NodePath("KnifeReloadTimer")
+
+[node name="Knife1" type="Sprite2D" parent="Ui_Root/Knife"]
+texture = ExtResource("4_lx884")
+
+[node name="Knife2" type="Sprite2D" parent="Ui_Root/Knife"]
+position = Vector2(18.8, 0)
+texture = ExtResource("4_lx884")
+
+[node name="Knife3" type="Sprite2D" parent="Ui_Root/Knife"]
+position = Vector2(38, 0)
+texture = ExtResource("4_lx884")
+
+[node name="Knife4" type="Sprite2D" parent="Ui_Root/Knife"]
+position = Vector2(55.6, 0)
+texture = ExtResource("4_lx884")
+
+[node name="KnifeReloadTimer" type="Timer" parent="Ui_Root/Knife"]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="Ui_Root/GracePeriodTimer" to="Ui_Root/Health" method="_on_grace_period_timer_timeout"]

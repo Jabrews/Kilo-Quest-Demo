@@ -1,0 +1,204 @@
+[gd_scene load_steps=23 format=3 uid="uid://c32vc641eokce"]
+
+[ext_resource type="Texture2D" uid="uid://one8kje3l2n5" path="res://Art/screens/death-screen.png" id="1_u7264"]
+[ext_resource type="Script" uid="uid://bj5sdbiv554" path="res://UI/button/ContinueButton.gd" id="2_h3wr6"]
+[ext_resource type="Texture2D" uid="uid://br0nma3glouv3" path="res://Art/UI/Buttons/Primary-btn-hover.png" id="2_xw40w"]
+[ext_resource type="Texture2D" uid="uid://babe3v6ke2by2" path="res://Art/UI/Buttons/Primary-btn-idle.png" id="3_a37v7"]
+[ext_resource type="Texture2D" uid="uid://dfscuj8t1bj04" path="res://Art/UI/Buttons/Primary-btn-pressed.png" id="4_h3wr6"]
+[ext_resource type="FontFile" uid="uid://3kd0010ik0d6" path="res://Art/fonts/pansyhand.ttf" id="5_5ncvh"]
+[ext_resource type="PackedScene" uid="uid://dpmpv7nldxxfs" path="res://UI/Solid_Background/background.tscn" id="6_soqny"]
+[ext_resource type="Script" uid="uid://caiv2jyhs0h32" path="res://UI/button/menu_button.gd" id="7_5ncvh"]
+[ext_resource type="Script" uid="uid://olajy1teexwm" path="res://UI/PlayerMouse/player_mouse.gd" id="7_a37v7"]
+[ext_resource type="Texture2D" uid="uid://d2scijaxbalqq" path="res://Art/UI/PlayerMouse/PlayerMouse.png" id="7_xw40w"]
+[ext_resource type="Script" uid="uid://bp63kwbci6cus" path="res://Components/SoundManager/Sound_Manager.gd" id="11_kjos4"]
+[ext_resource type="AudioStream" uid="uid://cq0w4dqq603ct" path="res://sounds/LevelThemes/music-death-menu.mp3" id="12_kjos4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjos4"]
+atlas = ExtResource("2_xw40w")
+region = Rect2(0, 0, 67, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwc7o"]
+atlas = ExtResource("2_xw40w")
+region = Rect2(67, 0, 67, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1ojw"]
+atlas = ExtResource("2_xw40w")
+region = Rect2(134, 0, 67, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ceufs"]
+atlas = ExtResource("3_a37v7")
+region = Rect2(0, 0, 67, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45v5y"]
+atlas = ExtResource("4_h3wr6")
+region = Rect2(0, 0, 67, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4iob"]
+atlas = ExtResource("4_h3wr6")
+region = Rect2(67, 0, 67, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6ufe"]
+atlas = ExtResource("4_h3wr6")
+region = Rect2(134, 0, 67, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aqteg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjos4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwc7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1ojw")
+}],
+"loop": false,
+"name": &"hover",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1ojw")
+}],
+"loop": true,
+"name": &"hover-idle",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ceufs")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45v5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4iob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6ufe")
+}],
+"loop": false,
+"name": &"pressed",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u8fsk"]
+size = Vector2(63, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a37v7"]
+size = Vector2(16.75, 19.25)
+
+[node name="DeathScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Death-screen" type="Sprite2D" parent="."]
+position = Vector2(159, 90)
+scale = Vector2(1, 0.983333)
+texture = ExtResource("1_u7264")
+
+[node name="ContinueButton" type="Area2D" parent="." node_paths=PackedStringArray("Sprite")]
+position = Vector2(114, 149)
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("2_h3wr6")
+Sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ContinueButton"]
+sprite_frames = SubResource("SpriteFrames_aqteg")
+animation = &"pressed"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContinueButton"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_u8fsk")
+
+[node name="Label" type="Label" parent="ContinueButton"]
+offset_left = -16.0
+offset_top = -13.0
+offset_right = 24.0
+offset_bottom = 18.0
+scale = Vector2(1.4781, 1.42073)
+theme_override_fonts/font = ExtResource("5_5ncvh")
+text = "Retry
+"
+
+[node name="MenuButton" type="Area2D" parent="." node_paths=PackedStringArray("Sprite")]
+position = Vector2(204, 149)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("7_5ncvh")
+Sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MenuButton"]
+sprite_frames = SubResource("SpriteFrames_aqteg")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MenuButton"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_u8fsk")
+
+[node name="Label" type="Label" parent="MenuButton"]
+offset_left = -13.0
+offset_top = -13.0
+offset_right = 27.0
+offset_bottom = 10.0
+scale = Vector2(1.4781, 1.42073)
+theme_override_fonts/font = ExtResource("5_5ncvh")
+text = "Menu"
+
+[node name="Background" parent="." instance=ExtResource("6_soqny")]
+z_index = -6
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0125
+anchor_top = -0.0166667
+anchor_right = 0.009375
+anchor_bottom = 0.0138889
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(163, 77)
+zoom = Vector2(4, 4)
+limit_left = 1
+limit_top = 1
+limit_right = 320
+limit_bottom = 180
+editor_draw_limits = true
+
+[node name="PlayerMouse" type="CharacterBody2D" parent="." groups=["player"]]
+collision_layer = 2
+collision_mask = 32
+script = ExtResource("7_a37v7")
+mouse_active = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerMouse"]
+position = Vector2(0.625, 0.375)
+shape = SubResource("RectangleShape2D_a37v7")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerMouse"]
+texture = ExtResource("7_xw40w")
+
+[node name="SoundManager" type="Node" parent="."]
+script = ExtResource("11_kjos4")
+level_theme = ExtResource("12_kjos4")
+
+[node name="levelthemeplayer" type="AudioStreamPlayer2D" parent="SoundManager"]
+position = Vector2(-8, 56)
+autoplay = true
+
+[connection signal="body_entered" from="ContinueButton" to="ContinueButton" method="_on_body_entered"]
+[connection signal="body_exited" from="ContinueButton" to="ContinueButton" method="_on_body_exited"]
+[connection signal="body_entered" from="MenuButton" to="MenuButton" method="_on_body_entered"]
+[connection signal="body_exited" from="MenuButton" to="MenuButton" method="_on_body_exited"]
+[connection signal="finished" from="SoundManager/levelthemeplayer" to="SoundManager" method="_on_levelthemeplayer_finished"]

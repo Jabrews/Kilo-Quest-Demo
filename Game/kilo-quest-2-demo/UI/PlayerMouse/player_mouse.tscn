@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcenhkn0bvr"]
+
+[ext_resource type="Script" uid="uid://olajy1teexwm" path="res://UI/PlayerMouse/player_mouse.gd" id="1_si7fe"]
+[ext_resource type="Texture2D" uid="uid://d2scijaxbalqq" path="res://Art/UI/PlayerMouse/PlayerMouse.png" id="2_7mhvr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfbyi"]
+size = Vector2(16.75, 19.25)
+
+[node name="PlayerMouse" type="CharacterBody2D" groups=["player"]]
+z_index = 17
+collision_layer = 2
+collision_mask = 32
+script = ExtResource("1_si7fe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.625, 0.375)
+shape = SubResource("RectangleShape2D_lfbyi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7mhvr")

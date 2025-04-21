@@ -1,0 +1,160 @@
+[gd_scene load_steps=20 format=3 uid="uid://1t8jjrog67f"]
+
+[ext_resource type="PackedScene" uid="uid://dpmpv7nldxxfs" path="res://UI/Solid_Background/background.tscn" id="1_2qyup"]
+[ext_resource type="Script" uid="uid://bnlmks8tak1iq" path="res://UI/LoadingScreenBus/loading_screen.gd" id="1_wumbr"]
+[ext_resource type="Texture2D" uid="uid://dbtaqgsria5yt" path="res://Art/screens/loadingScreebText.png" id="2_8kujj"]
+[ext_resource type="Script" uid="uid://b7r0nga4essgl" path="res://UI/kiloProp/kilo_prop.gd" id="3_nl3qt"]
+[ext_resource type="Texture2D" uid="uid://b04v1nmdcigw7" path="res://Art/Characters/Kilo/Kilo-run.png" id="4_wumbr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nl3qt"]
+atlas = ExtResource("2_8kujj")
+region = Rect2(0, 0, 191, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wumbr"]
+atlas = ExtResource("2_8kujj")
+region = Rect2(191, 0, 191, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ow02"]
+atlas = ExtResource("2_8kujj")
+region = Rect2(382, 0, 191, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awidc"]
+atlas = ExtResource("2_8kujj")
+region = Rect2(573, 0, 191, 39)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8j1nk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nl3qt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wumbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ow02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awidc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8j1nk"]
+atlas = ExtResource("4_wumbr")
+region = Rect2(0, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvvnp"]
+atlas = ExtResource("4_wumbr")
+region = Rect2(22, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qsrx"]
+atlas = ExtResource("4_wumbr")
+region = Rect2(44, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sskqn"]
+atlas = ExtResource("4_wumbr")
+region = Rect2(66, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ct1ij"]
+atlas = ExtResource("4_wumbr")
+region = Rect2(88, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6v86e"]
+atlas = ExtResource("4_wumbr")
+region = Rect2(110, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nds10"]
+atlas = ExtResource("4_wumbr")
+region = Rect2(132, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2hk3"]
+atlas = ExtResource("4_wumbr")
+region = Rect2(154, 0, 22, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_48tyx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j1nk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvvnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qsrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sskqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ct1ij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6v86e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nds10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2hk3")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="Loading_Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wumbr")
+
+[node name="Background" parent="." instance=ExtResource("1_2qyup")]
+z_index = -6
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00625
+anchor_top = -0.0111111
+anchor_right = -0.00625
+anchor_bottom = -0.0111111
+scale = Vector2(1.04964, 1.15045)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(168, 80)
+sprite_frames = SubResource("SpriteFrames_8j1nk")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.686309
+
+[node name="KiloProp" type="CharacterBody2D" parent="." node_paths=PackedStringArray("TurnTimer", "Sprite")]
+position = Vector2(56, 136)
+script = ExtResource("3_nl3qt")
+TurnTimer = NodePath("TurnTimer")
+speed = 95.0
+Sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="KiloProp"]
+sprite_frames = SubResource("SpriteFrames_48tyx")
+animation = &"run"
+autoplay = "run"
+
+[node name="TurnTimer" type="Timer" parent="KiloProp"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+limit_left = 1
+limit_top = 1
+limit_right = 320
+limit_bottom = 180
+editor_draw_limits = true
+
+[connection signal="timeout" from="KiloProp/TurnTimer" to="KiloProp" method="_on_turn_timer_timeout"]

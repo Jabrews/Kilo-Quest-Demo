@@ -1,0 +1,229 @@
+[gd_scene load_steps=27 format=3 uid="uid://bmw4e0medrrkm"]
+
+[ext_resource type="Script" uid="uid://cdfg5j7j6xqry" path="res://Characters/Dungeon/Eyeball/eyeball.gd" id="1_hvw56"]
+[ext_resource type="Texture2D" uid="uid://tya84mkktaji" path="res://Art/Characters/Dungeon_Creatures/Eyeball/eyball-base.png" id="2_hmimk"]
+[ext_resource type="Script" uid="uid://dawbushqg7nb5" path="res://Components/StateManager/StateManager.gd" id="3_yswx6"]
+[ext_resource type="Script" uid="uid://bm7disk08phry" path="res://Components/StateManager/States/Idle.gd" id="4_lsynk"]
+[ext_resource type="Script" uid="uid://c72100qcadjcb" path="res://Components/DetectPlayer/DetectPlayer.gd" id="4_yswx6"]
+[ext_resource type="Script" uid="uid://dfj66310x5y0l" path="res://Characters/Dungeon/Eyeball/hit.gd" id="5_a00bx"]
+[ext_resource type="Script" uid="uid://dbmky3wrtkmn4" path="res://Characters/Dungeon/Eyeball/attack.gd" id="5_lsynk"]
+[ext_resource type="Script" uid="uid://dtcnlli85t76j" path="res://Characters/Dungeon/Eyeball/death.gd" id="6_yhfu0"]
+[ext_resource type="Texture2D" uid="uid://6ndkfkeag0bf" path="res://Art/Characters/Dungeon_Creatures/Eyeball/eyball-reload.png" id="7_6ghyj"]
+[ext_resource type="Texture2D" uid="uid://caeuglc51q60w" path="res://Art/Characters/Dungeon_Creatures/Eyeball/eyball-hurt.png" id="7_d0xse"]
+[ext_resource type="Texture2D" uid="uid://bk15g7gkb4xph" path="res://Art/Characters/Dungeon_Creatures/Eyeball/eyball-shoot.png" id="8_a00bx"]
+[ext_resource type="Texture2D" uid="uid://tt71cox4tvjx" path="res://Art/Characters/Dungeon_Creatures/Eyeball/eyball-triggered.png" id="9_d0xse"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yhfu0"]
+radius = 23.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yswx6"]
+size = Vector2(207, 212)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvw56"]
+size = Vector2(430, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3oho"]
+atlas = ExtResource("7_d0xse")
+region = Rect2(0, 0, 40, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhfu0"]
+atlas = ExtResource("7_6ghyj")
+region = Rect2(200, 0, 40, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0s4ec"]
+atlas = ExtResource("7_6ghyj")
+region = Rect2(240, 0, 40, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3vlu"]
+atlas = ExtResource("7_6ghyj")
+region = Rect2(280, 0, 40, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6tjd"]
+atlas = ExtResource("8_a00bx")
+region = Rect2(146, 0, 73, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ys3s"]
+atlas = ExtResource("9_d0xse")
+region = Rect2(0, 0, 40, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lj28"]
+atlas = ExtResource("9_d0xse")
+region = Rect2(40, 0, 40, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwwir"]
+atlas = ExtResource("9_d0xse")
+region = Rect2(80, 0, 40, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rdad"]
+atlas = ExtResource("9_d0xse")
+region = Rect2(120, 0, 40, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0s4ec"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3oho")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hmimk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhfu0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0s4ec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3vlu")
+}],
+"loop": false,
+"name": &"reload",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6tjd")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ys3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6lj28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwwir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rdad")
+}],
+"loop": false,
+"name": &"triggered",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x8bgj"]
+radius = 16.1245
+
+[node name="Eyeball" type="CharacterBody2D" groups=["enemy", "has_hit_state"]]
+collision_layer = 4
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_hvw56")
+metadata/_edit_group_ = true
+
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("current_state", "Character")]
+script = ExtResource("3_yswx6")
+current_state = NodePath("Idle")
+Character = NodePath("..")
+
+[node name="Idle" type="Node" parent="StateManager" node_paths=PackedStringArray("Character", "DetectPlayer", "AttackState", "Sprite")]
+script = ExtResource("4_lsynk")
+Character = NodePath("../..")
+DetectPlayer = NodePath("../../DetectPlayer")
+AttackState = NodePath("../Attack")
+Sprite = NodePath("../../AnimatedSprite2D")
+hurtbox_move_distance = 20.0
+hurtbox_move_speed = 40.0
+speed = 0.3
+
+[node name="Attack" type="Node" parent="StateManager" node_paths=PackedStringArray("DetectPlayer", "Character", "IdleState", "Sprite", "ShootDelayTimer")]
+script = ExtResource("5_lsynk")
+DetectPlayer = NodePath("../../DetectPlayer")
+Character = NodePath("../..")
+IdleState = NodePath("../Idle")
+Sprite = NodePath("../../AnimatedSprite2D")
+ShootDelayTimer = NodePath("ShootDelayTimer")
+speed = 1.0
+vertical_oscillation_distance = 20.0
+
+[node name="ShootDelayTimer" type="Timer" parent="StateManager/Attack"]
+one_shot = true
+
+[node name="Hit" type="Node" parent="StateManager" node_paths=PackedStringArray("hit_timer", "character", "sprite", "AttackState", "DeathState", "DetectArea", "EscapeArea")]
+script = ExtResource("5_a00bx")
+hit_timer = NodePath("HitTime")
+character = NodePath("../..")
+sprite = NodePath("../../AnimatedSprite2D")
+AttackState = NodePath("../Attack")
+DeathState = NodePath("../Death")
+DetectArea = NodePath("../../DetectPlayer/DetectionArea")
+EscapeArea = NodePath("../../DetectPlayer/EscapeArea")
+metadata/_custom_type_script = "uid://xvfy5djcee0r"
+
+[node name="HitTime" type="Timer" parent="StateManager/Hit"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Death" type="Node" parent="StateManager" node_paths=PackedStringArray("Death_Rattle_Timer", "Character", "Sprite")]
+script = ExtResource("6_yhfu0")
+Death_Rattle_Timer = NodePath("DeathRattleTimer")
+Character = NodePath("../..")
+Sprite = NodePath("../../AnimatedSprite2D")
+death_rattle_move_speed = 70
+gravity = 60.0
+metadata/_custom_type_script = "uid://xvfy5djcee0r"
+
+[node name="DeathRattleTimer" type="Timer" parent="StateManager/Death"]
+
+[node name="TilesetDetectArea" type="Area2D" parent="StateManager/Death"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StateManager/Death/TilesetDetectArea"]
+shape = SubResource("CircleShape2D_yhfu0")
+
+[node name="DetectPlayer" type="Node" parent="." node_paths=PackedStringArray("activate_state", "chase_state")]
+script = ExtResource("4_yswx6")
+activate_state = NodePath("../StateManager/Idle")
+chase_state = NodePath("../StateManager/Attack")
+
+[node name="DetectionArea" type="Area2D" parent="DetectPlayer"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="DetectionZone" type="CollisionShape2D" parent="DetectPlayer/DetectionArea"]
+shape = SubResource("RectangleShape2D_yswx6")
+
+[node name="EscapeArea" type="Area2D" parent="DetectPlayer"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="EscapeZone" type="CollisionShape2D" parent="DetectPlayer/EscapeArea"]
+shape = SubResource("RectangleShape2D_hvw56")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0s4ec")
+animation = &"hit"
+autoplay = "idle"
+
+[node name="TransformDetectionZone" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../DetectPlayer/DetectionArea/DetectionZone")
+
+[node name="TransformEscapeZone" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../DetectPlayer/EscapeArea/EscapeZone")
+
+[node name="hurtbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_x8bgj")
+
+[connection signal="timeout" from="StateManager/Attack/ShootDelayTimer" to="StateManager/Attack" method="_on_shoot_delay_timer_timeout"]
+[connection signal="timeout" from="StateManager/Hit/HitTime" to="StateManager/Hit" method="_on_hit_time_timeout"]
+[connection signal="timeout" from="StateManager/Death/DeathRattleTimer" to="StateManager/Death" method="_on_death_rattle_timer_timeout"]
+[connection signal="body_entered" from="StateManager/Death/TilesetDetectArea" to="StateManager/Death" method="_on_tileset_detect_area_body_entered"]
+[connection signal="body_entered" from="DetectPlayer/DetectionArea" to="DetectPlayer" method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectPlayer/DetectionArea" to="DetectPlayer" method="_on_detection_area_body_exited"]
+[connection signal="body_exited" from="DetectPlayer/EscapeArea" to="DetectPlayer" method="_on_escape_area_body_exited"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="StateManager/Attack" method="_on_animated_sprite_2d_animation_finished"]

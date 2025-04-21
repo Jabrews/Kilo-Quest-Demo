@@ -1,0 +1,277 @@
+[gd_scene load_steps=31 format=3 uid="uid://dckrmv62w67n8"]
+
+[ext_resource type="Script" uid="uid://cvmcoq8l2tec6" path="res://Characters/Dungeon/Robot-Knight-1/knight.gd" id="1_7wow5"]
+[ext_resource type="Texture2D" uid="uid://ewsesr86r4me" path="res://Art/Characters/Dungeon_Creatures/Dark-Robot-1/Knight-Demo-Anim.png" id="1_cwg12"]
+[ext_resource type="Texture2D" uid="uid://bwwtbl6m4c231" path="res://Art/Characters/Dungeon_Creatures/Dark-Robot-1/Basic_Knight-attack.png" id="1_vms8s"]
+[ext_resource type="Script" uid="uid://coda5xcna68wo" path="res://Characters/Dungeon/Robot-Knight-1/state_manager.gd" id="3_he3n3"]
+[ext_resource type="Script" uid="uid://r3s8t2km78wn" path="res://Characters/Dungeon/Robot-Knight-1/idle.gd" id="4_he3n3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pkyvb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wow5"]
+size = Vector2(83, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajqx0"]
+size = Vector2(192.625, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8l4kx"]
+size = Vector2(473, 122)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7wow5"]
+height = 44.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qomma"]
+atlas = ExtResource("1_vms8s")
+region = Rect2(144, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ix0e"]
+atlas = ExtResource("1_vms8s")
+region = Rect2(192, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efh0o"]
+atlas = ExtResource("1_vms8s")
+region = Rect2(240, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6611u"]
+atlas = ExtResource("1_vms8s")
+region = Rect2(288, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwruj"]
+atlas = ExtResource("1_vms8s")
+region = Rect2(336, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfc3o"]
+atlas = ExtResource("1_vms8s")
+region = Rect2(384, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odirc"]
+atlas = ExtResource("1_vms8s")
+region = Rect2(432, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ho0l"]
+atlas = ExtResource("1_vms8s")
+region = Rect2(480, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5sos"]
+atlas = ExtResource("1_vms8s")
+region = Rect2(528, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_he3n3"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(92, 0, 46, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00rf2"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(46, 0, 46, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vms8s"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(0, 0, 46, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwg12"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(138, 0, 46, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajqx0"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(184, 0, 46, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wow5"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(230, 0, 46, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8l4kx"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(276, 0, 46, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jgw5"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(322, 0, 46, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkyvb"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(368, 0, 46, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqbpt"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(414, 0, 46, 37)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ajqx0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qomma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ix0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efh0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6611u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwruj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfc3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odirc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ho0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5sos")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_he3n3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00rf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vms8s")
+}],
+"loop": true,
+"name": &"get_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vms8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00rf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_he3n3")
+}],
+"loop": true,
+"name": &"get_up",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwg12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajqx0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wow5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8l4kx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jgw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkyvb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqbpt")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[node name="Knight" type="CharacterBody2D" node_paths=PackedStringArray("Sprite")]
+collision_layer = 4
+script = ExtResource("1_7wow5")
+Sprite = NodePath("AnimatedSprite2D")
+
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("current_state", "Character")]
+script = ExtResource("3_he3n3")
+current_state = NodePath("Idle")
+Character = NodePath("..")
+metadata/_custom_type_script = "uid://dawbushqg7nb5"
+
+[node name="Idle" type="Node" parent="StateManager" node_paths=PackedStringArray("Character")]
+script = ExtResource("4_he3n3")
+Character = NodePath("../..")
+SPEED = 300.0
+
+[node name="RightWalkRange" type="Area2D" parent="StateManager/Idle"]
+
+[node name="RightWalkZone" type="CollisionShape2D" parent="StateManager/Idle/RightWalkRange"]
+position = Vector2(238, -3)
+shape = SubResource("RectangleShape2D_pkyvb")
+debug_color = Color(0.937255, 0, 0.631373, 1)
+
+[node name="LeftWalkRange" type="Area2D" parent="StateManager/Idle"]
+
+[node name="LeftWalkZone" type="CollisionShape2D" parent="StateManager/Idle/LeftWalkRange"]
+position = Vector2(-240, -1)
+shape = SubResource("RectangleShape2D_pkyvb")
+debug_color = Color(0.937255, 0, 0.631373, 1)
+
+[node name="DetectPlayer" type="Node" parent="."]
+
+[node name="DetectionArea" type="Area2D" parent="DetectPlayer"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="DetectionZone" type="CollisionShape2D" parent="DetectPlayer/DetectionArea"]
+shape = SubResource("RectangleShape2D_7wow5")
+
+[node name="ConeDetectionZoneR" type="CollisionShape2D" parent="DetectPlayer/DetectionArea"]
+shape = SubResource("RectangleShape2D_ajqx0")
+
+[node name="ConeDetectionZoneL" type="CollisionShape2D" parent="DetectPlayer/DetectionArea"]
+shape = SubResource("RectangleShape2D_ajqx0")
+
+[node name="EscapeArea" type="Area2D" parent="DetectPlayer"]
+position = Vector2(-65, -48)
+collision_layer = 0
+collision_mask = 2
+
+[node name="EscapeZone" type="CollisionShape2D" parent="DetectPlayer/EscapeArea"]
+position = Vector2(65, 48)
+shape = SubResource("RectangleShape2D_8l4kx")
+
+[node name="Hurtbox" type="CollisionShape2D" parent="."]
+position = Vector2(-9, 3)
+shape = SubResource("CapsuleShape2D_7wow5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.4, 1.48)
+sprite_frames = SubResource("SpriteFrames_ajqx0")
+animation = &"get_down"
+autoplay = "attack"
+frame = 2
+frame_progress = 0.589779
+
+[node name="TransformDetectZone" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../DetectPlayer/DetectionArea/DetectionZone")
+
+[node name="TransformConeZoneL" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../DetectPlayer/DetectionArea/ConeDetectionZoneL")
+
+[node name="TransformEscapeZone" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../DetectPlayer/EscapeArea/EscapeZone")
+
+[node name="TransformConeZoneR" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../DetectPlayer/DetectionArea/ConeDetectionZoneR")
+
+[node name="TransformLeftWalkZone" type="RemoteTransform2D" parent="."]
+position = Vector2(-240, -1)
+remote_path = NodePath("../StateManager/Idle/LeftWalkRange/LeftWalkZone")
+
+[node name="TransformRightWalkZone" type="RemoteTransform2D" parent="."]
+position = Vector2(238, -3)
+remote_path = NodePath("../StateManager/Idle/RightWalkRange/RightWalkZone")
+
+[connection signal="body_entered" from="StateManager/Idle/RightWalkRange" to="StateManager/Idle" method="_on_right_walk_range_body_entered"]
+[connection signal="body_entered" from="StateManager/Idle/LeftWalkRange" to="StateManager/Idle" method="_on_left_walk_range_body_entered"]
+[connection signal="body_entered" from="DetectPlayer/DetectionArea" to="DetectPlayer" method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectPlayer/EscapeArea" to="DetectPlayer" method="_on_escape_area_body_exited"]

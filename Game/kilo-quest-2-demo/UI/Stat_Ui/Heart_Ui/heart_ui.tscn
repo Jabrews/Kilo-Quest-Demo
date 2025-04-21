@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://jf8dcylcuq0b"]
+
+[ext_resource type="Texture2D" uid="uid://c7ix37q5g54r0" path="res://Art/UI/CombatUi/Hearts/Heart_dead.png" id="1_3qxw8"]
+[ext_resource type="Script" uid="uid://uegbv2psctqo" path="res://UI/Stat_Ui/Heart_Ui/heart_ui.gd" id="1_kqf36"]
+[ext_resource type="Texture2D" uid="uid://k1rsyiqxiwbc" path="res://Art/UI/CombatUi/Hearts/Heart_alive.png" id="2_h1alu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1alu"]
+atlas = ExtResource("1_3qxw8")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqf36"]
+atlas = ExtResource("2_h1alu")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kqf36"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1alu")
+}],
+"loop": true,
+"name": &"Empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqf36")
+}],
+"loop": true,
+"name": &"Full",
+"speed": 5.0
+}]
+
+[node name="Heart_Ui" type="HBoxContainer"]
+layout_direction = 2
+pivot_offset = Vector2(10, 10)
+alignment = 1
+script = ExtResource("1_kqf36")
+
+[node name="Heart1" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kqf36")
+animation = &"Empty"
+
+[node name="Heart2" type="AnimatedSprite2D" parent="."]
+position = Vector2(19, 0)
+sprite_frames = SubResource("SpriteFrames_kqf36")
+animation = &"Empty"
+
+[node name="Heart3" type="AnimatedSprite2D" parent="."]
+position = Vector2(38, 0)
+sprite_frames = SubResource("SpriteFrames_kqf36")
+animation = &"Empty"

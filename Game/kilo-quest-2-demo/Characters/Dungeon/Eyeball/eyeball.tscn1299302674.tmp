@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://bmw4e0medrrkm"]
+
+[ext_resource type="Script" uid="uid://cdfg5j7j6xqry" path="res://Characters/Dungeon/Eyeball/eyeball.gd" id="1_hvw56"]
+[ext_resource type="Texture2D" uid="uid://tya84mkktaji" path="res://Art/Characters/Dungeon_Creatures/Eyeball/eyball-base.png" id="2_hmimk"]
+[ext_resource type="Script" uid="uid://dawbushqg7nb5" path="res://Components/StateManager/StateManager.gd" id="3_yswx6"]
+[ext_resource type="Script" uid="uid://bm7disk08phry" path="res://Components/StateManager/States/Idle.gd" id="4_lsynk"]
+[ext_resource type="Script" uid="uid://c72100qcadjcb" path="res://Components/DetectPlayer/DetectPlayer.gd" id="4_yswx6"]
+[ext_resource type="Script" uid="uid://dbmky3wrtkmn4" path="res://Characters/Dungeon/Eyeball/attack.gd" id="5_lsynk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yswx6"]
+size = Vector2(306, 222)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x8bgj"]
+radius = 16.1245
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0s4ec"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"attack_start",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hmimk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Eyeball" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_hvw56")
+metadata/_edit_group_ = true
+
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("current_state", "Character")]
+script = ExtResource("3_yswx6")
+current_state = NodePath("Idle")
+Character = NodePath("..")
+
+[node name="Idle" type="Node" parent="StateManager" node_paths=PackedStringArray("DetectPlayer", "Character")]
+script = ExtResource("4_lsynk")
+DetectPlayer = NodePath("../../DetectPlayer")
+Character = NodePath("../..")
+
+[node name="Attack" type="Node" parent="StateManager" node_paths=PackedStringArray("DetectPlayer", "Character", "IdleNode")]
+script = ExtResource("5_lsynk")
+DetectPlayer = NodePath("../../DetectPlayer")
+Character = NodePath("../..")
+IdleNode = NodePath("../Idle")
+dip_amount = 0.5
+dip_distance = 50.0
+
+[node name="DetectPlayer" type="Node" parent="." node_paths=PackedStringArray("activate_state", "chase_state", "deactivate_state")]
+script = ExtResource("4_yswx6")
+activate_state = NodePath("../StateManager/Idle")
+chase_state = NodePath("../StateManager/Attack")
+deactivate_state = NodePath("../StateManager/Attack")
+
+[node name="DetectionArea" type="Area2D" parent="DetectPlayer"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="DetectionZone" type="CollisionShape2D" parent="DetectPlayer/DetectionArea"]
+shape = SubResource("RectangleShape2D_yswx6")
+
+[node name="hurtbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_x8bgj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0s4ec")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="TransformDetectionZone" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../DetectPlayer/DetectionArea/DetectionZone")
+
+[connection signal="body_entered" from="DetectPlayer/DetectionArea" to="DetectPlayer" method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectPlayer/DetectionArea" to="DetectPlayer" method="_on_detection_area_body_exited"]

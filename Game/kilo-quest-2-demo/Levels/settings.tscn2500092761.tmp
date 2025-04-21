@@ -1,0 +1,189 @@
+[gd_scene load_steps=17 format=3 uid="uid://cyiwe1jvv4ryb"]
+
+[ext_resource type="Script" uid="uid://1sqoytsmiwtw" path="res://UI/Settings/Settings.gd" id="1_0oeak"]
+[ext_resource type="PackedScene" uid="uid://dcenhkn0bvr" path="res://UI/PlayerMouse/player_mouse.tscn" id="2_un3ki"]
+[ext_resource type="FontFile" uid="uid://3kd0010ik0d6" path="res://Art/fonts/pansyhand.ttf" id="3_0oeak"]
+[ext_resource type="Texture2D" uid="uid://br0nma3glouv3" path="res://Art/UI/Buttons/Primary-btn-hover.png" id="4_abo73"]
+[ext_resource type="Texture2D" uid="uid://babe3v6ke2by2" path="res://Art/UI/Buttons/Primary-btn-idle.png" id="5_l7l23"]
+[ext_resource type="Texture2D" uid="uid://dfscuj8t1bj04" path="res://Art/UI/Buttons/Primary-btn-pressed.png" id="6_3ihky"]
+[ext_resource type="Texture2D" uid="uid://bpv1bvcwuhab7" path="res://Art/UI/Settings/close.png" id="8_abo73"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjos4"]
+atlas = ExtResource("4_abo73")
+region = Rect2(0, 0, 67, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwc7o"]
+atlas = ExtResource("4_abo73")
+region = Rect2(67, 0, 67, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1ojw"]
+atlas = ExtResource("4_abo73")
+region = Rect2(134, 0, 67, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ceufs"]
+atlas = ExtResource("5_l7l23")
+region = Rect2(0, 0, 67, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45v5y"]
+atlas = ExtResource("6_3ihky")
+region = Rect2(0, 0, 67, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4iob"]
+atlas = ExtResource("6_3ihky")
+region = Rect2(67, 0, 67, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6ufe"]
+atlas = ExtResource("6_3ihky")
+region = Rect2(134, 0, 67, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_arq6h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjos4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwc7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1ojw")
+}],
+"loop": false,
+"name": &"hover",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1ojw")
+}],
+"loop": true,
+"name": &"hover-idle",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ceufs")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45v5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4iob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6ufe")
+}],
+"loop": false,
+"name": &"pressed",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phjhe"]
+size = Vector2(63, 20)
+
+[node name="Settings" type="Control" node_paths=PackedStringArray("SettingsPlayerMouse")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0oeak")
+SettingsPlayerMouse = NodePath("")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 19.0
+offset_right = 73.0
+offset_bottom = 59.0
+scale = Vector2(6.47751, 3.48)
+color = Color(0.780392, 0.776471, 0.776471, 1)
+
+[node name="PlayerMouse" parent="." instance=ExtResource("2_un3ki")]
+
+[node name="Windowed" type="Label" parent="."]
+offset_left = 47.0
+offset_top = 111.0
+offset_right = 90.0
+offset_bottom = 134.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_0oeak")
+text = "Windowed :"
+
+[node name="Fullscreen" type="Label" parent="."]
+offset_left = 47.0
+offset_top = 88.0
+offset_right = 90.0
+offset_bottom = 111.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_0oeak")
+text = "Fullscreen :"
+
+[node name="SFXLabel" type="Label" parent="."]
+offset_left = 48.0
+offset_top = 53.0
+offset_right = 88.0
+offset_bottom = 76.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_0oeak")
+text = "SFX : "
+
+[node name="MusicLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 29.0
+offset_right = 88.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_0oeak")
+text = "Music :"
+
+[node name="ApplyBtn" type="Area2D" parent="."]
+position = Vector2(131, 4)
+collision_layer = 0
+collision_mask = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ApplyBtn"]
+position = Vector2(33, 137)
+scale = Vector2(0.831057, 0.641872)
+sprite_frames = SubResource("SpriteFrames_arq6h")
+animation = &"pressed"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ApplyBtn"]
+position = Vector2(33.5, 137)
+scale = Vector2(0.831057, 0.641872)
+shape = SubResource("RectangleShape2D_phjhe")
+
+[node name="Label" type="Label" parent="ApplyBtn"]
+offset_left = 21.0
+offset_top = 129.0
+offset_right = 61.0
+offset_bottom = 160.0
+scale = Vector2(1.20627, 0.911927)
+theme_override_fonts/font = ExtResource("3_0oeak")
+text = "Apply
+"
+
+[node name="CloseIcon" type="Area2D" parent="."]
+position = Vector2(280, 30)
+
+[node name="Sprite2D" type="Sprite2D" parent="CloseIcon"]
+texture = ExtResource("8_abo73")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(163, 77)
+zoom = Vector2(6, 6)
+limit_left = 1
+limit_top = 1
+limit_right = 320
+limit_bottom = 180
+editor_draw_limits = true
+
+[connection signal="body_exited" from="ApplyBtn" to="ApplyBtn" method="_on_body_exited"]
+[connection signal="body_entered" from="CloseIcon" to="." method="_on_close_icon_body_entered"]

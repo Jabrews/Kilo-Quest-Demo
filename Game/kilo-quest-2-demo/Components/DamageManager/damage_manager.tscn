@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckjj7u5b6b63w"]
+
+[ext_resource type="Script" uid="uid://b27rqicgrv00f" path="res://Components/DamageManager/damage_manager.gd" id="1_dy1aw"]
+
+[node name="DamageManager" type="Node"]
+script = ExtResource("1_dy1aw")

@@ -1,0 +1,318 @@
+[gd_scene load_steps=35 format=3 uid="uid://dckrmv62w67n8"]
+
+[ext_resource type="Script" uid="uid://cvmcoq8l2tec6" path="res://Characters/Dungeon/Robot-Knight-1/knight.gd" id="1_7wow5"]
+[ext_resource type="Texture2D" uid="uid://ewsesr86r4me" path="res://Art/Characters/Dungeon_Creatures/Dark-Robot-1/Knight-Demo-Anim.png" id="1_cwg12"]
+[ext_resource type="Texture2D" uid="uid://bwwtbl6m4c231" path="res://Art/Characters/Dungeon_Creatures/Dark-Robot-1/Basic_Knight-attack.png" id="1_vms8s"]
+[ext_resource type="Script" uid="uid://coda5xcna68wo" path="res://Characters/Dungeon/Robot-Knight-1/state_manager.gd" id="3_he3n3"]
+[ext_resource type="Script" uid="uid://duyu01wgsou44" path="res://Characters/Dungeon/Robot-Knight-1/detect_player_Knight.gd" id="4_7wow5"]
+[ext_resource type="Script" uid="uid://bg3t7wb2lo71g" path="res://Characters/Dungeon/Robot-Knight-1/attack.gd" id="4_8l4kx"]
+[ext_resource type="Script" uid="uid://r3s8t2km78wn" path="res://Characters/Dungeon/Robot-Knight-1/idle.gd" id="4_he3n3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3jgw5"]
+size = Vector2(27, 43)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pkyvb"]
+size = Vector2(23, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wow5"]
+size = Vector2(83, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajqx0"]
+size = Vector2(192.625, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8l4kx"]
+size = Vector2(473, 122)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7wow5"]
+height = 44.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qomma"]
+atlas = ExtResource("1_vms8s")
+region = Rect2(144, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ix0e"]
+atlas = ExtResource("1_vms8s")
+region = Rect2(192, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efh0o"]
+atlas = ExtResource("1_vms8s")
+region = Rect2(240, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6611u"]
+atlas = ExtResource("1_vms8s")
+region = Rect2(288, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwruj"]
+atlas = ExtResource("1_vms8s")
+region = Rect2(336, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfc3o"]
+atlas = ExtResource("1_vms8s")
+region = Rect2(384, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odirc"]
+atlas = ExtResource("1_vms8s")
+region = Rect2(432, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ho0l"]
+atlas = ExtResource("1_vms8s")
+region = Rect2(480, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5sos"]
+atlas = ExtResource("1_vms8s")
+region = Rect2(528, 0, 48, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_he3n3"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(92, 0, 46, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00rf2"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(46, 0, 46, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vms8s"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(0, 0, 46, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwg12"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(138, 0, 46, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajqx0"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(184, 0, 46, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wow5"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(230, 0, 46, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8l4kx"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(276, 0, 46, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jgw5"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(322, 0, 46, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkyvb"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(368, 0, 46, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqbpt"]
+atlas = ExtResource("1_cwg12")
+region = Rect2(414, 0, 46, 37)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ajqx0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qomma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ix0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efh0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6611u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwruj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfc3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odirc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ho0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5sos")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_he3n3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00rf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vms8s")
+}],
+"loop": false,
+"name": &"get_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vms8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00rf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_he3n3")
+}],
+"loop": false,
+"name": &"get_up",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwg12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajqx0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wow5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8l4kx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jgw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkyvb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqbpt")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ajqx0"]
+height = 42.0
+
+[node name="Knight" type="CharacterBody2D" node_paths=PackedStringArray("Sprite", "HurtboxR", "HurtboxL", "ConeDetectL", "ConeDetectR", "SwordL", "SwordR")]
+collision_layer = 4
+script = ExtResource("1_7wow5")
+Sprite = NodePath("AnimatedSprite2D")
+HurtboxR = NodePath("HurtboxR")
+HurtboxL = NodePath("HurtboxL")
+ConeDetectL = NodePath("DetectPlayer/DetectionArea/ConeDetectionZoneL")
+ConeDetectR = NodePath("DetectPlayer/DetectionArea/ConeDetectionZoneR")
+SwordL = NodePath("StateManager/Attack/Sword/SwordL")
+SwordR = NodePath("StateManager/Attack/Sword/SwordR")
+
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("current_state", "Character")]
+script = ExtResource("3_he3n3")
+current_state = NodePath("Idle")
+Character = NodePath("..")
+metadata/_custom_type_script = "uid://dawbushqg7nb5"
+
+[node name="Idle" type="Node" parent="StateManager" node_paths=PackedStringArray("Character", "WalkTimer", "PauseTimer", "Sprite", "AttackState")]
+script = ExtResource("4_he3n3")
+Character = NodePath("../..")
+SPEED = 50.0
+WalkTimer = NodePath("WalkTimer")
+PauseTimer = NodePath("PauseTimer")
+Sprite = NodePath("../../AnimatedSprite2D")
+AttackState = NodePath("../Attack")
+
+[node name="WalkTimer" type="Timer" parent="StateManager/Idle"]
+wait_time = 7.0
+one_shot = true
+
+[node name="PauseTimer" type="Timer" parent="StateManager/Idle"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Attack" type="Node" parent="StateManager" node_paths=PackedStringArray("DetectPlayer", "Character", "IdleState", "Sprite")]
+script = ExtResource("4_8l4kx")
+SPEED = 100.0
+DetectPlayer = NodePath("../../DetectPlayer")
+Character = NodePath("../..")
+IdleState = NodePath("../Idle")
+Sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="Sword" type="Area2D" parent="StateManager/Attack"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="SwordL" type="CollisionShape2D" parent="StateManager/Attack/Sword"]
+position = Vector2(19, 0)
+shape = SubResource("RectangleShape2D_3jgw5")
+
+[node name="SwordR" type="CollisionShape2D" parent="StateManager/Attack/Sword"]
+position = Vector2(-19, 1)
+shape = SubResource("RectangleShape2D_pkyvb")
+
+[node name="DetectPlayer" type="Node" parent="." node_paths=PackedStringArray("activate_state", "chase_state", "state_manager")]
+script = ExtResource("4_7wow5")
+activate_state = NodePath("../StateManager/Idle")
+chase_state = NodePath("../StateManager/Attack")
+state_manager = NodePath("../StateManager")
+
+[node name="DetectionArea" type="Area2D" parent="DetectPlayer"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="DetectionZone" type="CollisionShape2D" parent="DetectPlayer/DetectionArea"]
+shape = SubResource("RectangleShape2D_7wow5")
+
+[node name="ConeDetectionZoneR" type="CollisionShape2D" parent="DetectPlayer/DetectionArea"]
+position = Vector2(138, 1)
+shape = SubResource("RectangleShape2D_ajqx0")
+
+[node name="ConeDetectionZoneL" type="CollisionShape2D" parent="DetectPlayer/DetectionArea"]
+position = Vector2(-135, 0)
+shape = SubResource("RectangleShape2D_ajqx0")
+
+[node name="EscapeArea" type="Area2D" parent="DetectPlayer"]
+position = Vector2(-65, -48)
+collision_layer = 0
+collision_mask = 2
+
+[node name="EscapeZone" type="CollisionShape2D" parent="DetectPlayer/EscapeArea"]
+position = Vector2(65, 48)
+shape = SubResource("RectangleShape2D_8l4kx")
+
+[node name="HurtboxR" type="CollisionShape2D" parent="."]
+position = Vector2(-9, 3)
+shape = SubResource("CapsuleShape2D_7wow5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.4, 1.48)
+sprite_frames = SubResource("SpriteFrames_ajqx0")
+animation = &"get_up"
+autoplay = "get_up"
+
+[node name="TransformDetectZone" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../DetectPlayer/DetectionArea/DetectionZone")
+
+[node name="TransformConeZoneL" type="RemoteTransform2D" parent="."]
+position = Vector2(-135, 0)
+remote_path = NodePath("../DetectPlayer/DetectionArea/ConeDetectionZoneL")
+
+[node name="TransformEscapeZone" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../DetectPlayer/EscapeArea/EscapeZone")
+
+[node name="TransformConeZoneR" type="RemoteTransform2D" parent="."]
+position = Vector2(138, 1)
+remote_path = NodePath("../DetectPlayer/DetectionArea/ConeDetectionZoneR")
+
+[node name="HurtboxL" type="CollisionShape2D" parent="."]
+position = Vector2(10, 2)
+shape = SubResource("CapsuleShape2D_ajqx0")
+
+[node name="TransformSwordR" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../StateManager/Attack/Sword/SwordR")
+
+[node name="TransformSwordL" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../StateManager/Attack/Sword/SwordL")
+
+[connection signal="timeout" from="StateManager/Idle/WalkTimer" to="StateManager/Idle" method="_on_walk_timer_timeout"]
+[connection signal="timeout" from="StateManager/Idle/PauseTimer" to="StateManager/Idle" method="_on_pause_timer_timeout"]
+[connection signal="body_entered" from="DetectPlayer/DetectionArea" to="DetectPlayer" method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectPlayer/EscapeArea" to="DetectPlayer" method="_on_escape_area_body_exited"]

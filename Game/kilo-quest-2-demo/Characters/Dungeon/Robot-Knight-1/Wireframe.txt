@@ -1,0 +1,35 @@
+
+DEALING WITH SPRITE FLIP
+In the charcter body, whenever the knight changes direction, flip it accordingly (-1, 1)
+In the CharBody: 
+	- function that accepts the direction
+	- Also emit a signal that the direction has changed and which direction
+In the DetectionArea
+	- Descision tree for enabling correct ConeDetectionZone Direction
+	- These are decided by a variable, which can changed by the forementioned signal 
+
+
+
+@ timer, timer, Detect_Wall_Fall area
+- Idle State (default)
+- If the knight is not at their gorrect global x, return to it, ELSE
+- the knight will walk a distance, this is defined by a timer @GlobalToChar
+- Once the knight reaches their point, they'll stand still for a period, also defined by a timer @GlobalToChar
+- While walking, if they reach a wall, they'll turn around and then pause
+- the knight will not fall off edges, also make them turn around for this
+
+@ Sword area, links to PlayerDetection
+- Attack State 
+- The knight changes to attack state with the player refrence
+	- @PlayerDectrction Components : Cone vision DETECT, Rectangle around DETECT, Rectangle CHASE
+- They will actively approach player on x value
+- When in sword range : Play attack animation, Make Sword area montirable (the Area2D will send attackPlayer signal) 
+
+@ timer
+- Hit State
+- Will freeze and scale up for a quick second.
+- Returns to attack state
+
+- Death State
+- Play death animation
+- Blow Up

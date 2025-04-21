@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmw4e0medrrkm"]
+
+[ext_resource type="Texture2D" uid="uid://tya84mkktaji" path="res://Art/Characters/Dungeon_Creatures/Eyeball/eyball-base.png" id="2_hmimk"]
+[ext_resource type="Script" uid="uid://dawbushqg7nb5" path="res://Components/StateManager/StateManager.gd" id="3_yswx6"]
+[ext_resource type="Script" uid="uid://bm7disk08phry" path="res://Components/StateManager/State.gd" id="4_lsynk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x8bgj"]
+radius = 16.1245
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0s4ec"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"attack_start",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hmimk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Eyeball" type="CharacterBody2D"]
+
+[node name="hurtbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_x8bgj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0s4ec")
+animation = &"attack_start"
+autoplay = "idle"
+
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("Character")]
+script = ExtResource("3_yswx6")
+Character = NodePath("..")
+
+[node name="Idle" type="Node" parent="StateManager"]
+script = ExtResource("4_lsynk")

@@ -1,0 +1,320 @@
+[gd_scene load_steps=45 format=3 uid="uid://bpf43s0oletyc"]
+
+[ext_resource type="Texture2D" uid="uid://metb3umfveb0" path="res://Art/Characters/Kilo/Kilo-idle.png" id="1_8xp0j"]
+[ext_resource type="Script" uid="uid://cdqd1kdxq80rw" path="res://Characters/Player/Kilo/kilo_movement_demo.gd" id="1_gdd3m"]
+[ext_resource type="PackedScene" uid="uid://c3s76tv1emnig" path="res://Characters/Player/Kilo/dash_ghost.tscn" id="2_02kwj"]
+[ext_resource type="Texture2D" uid="uid://b7jsodro82v2j" path="res://Art/Characters/Kilo/Kilo-Dash.png" id="2_t4q6h"]
+[ext_resource type="Texture2D" uid="uid://bkdkihfgtc6vr" path="res://Art/Characters/Kilo/Kilo-jump.png" id="3_h764b"]
+[ext_resource type="Texture2D" uid="uid://b04v1nmdcigw7" path="res://Art/Characters/Kilo/Kilo-run.png" id="3_k6a17"]
+[ext_resource type="Script" uid="uid://bq0i7g8udaerj" path="res://Characters/Player/Kilo/knife_sphere.gd" id="5_04p2u"]
+[ext_resource type="Texture2D" uid="uid://c8xomvq7dpsip" path="res://Art/Characters/Kilo/KnifeSphere/KnifeSphereBase.png" id="5_a577i"]
+[ext_resource type="Script" uid="uid://dywqv2wg0tt8t" path="res://Characters/Player/Kilo/Aiming_Box.gd" id="6_ll00o"]
+[ext_resource type="Texture2D" uid="uid://daomrymvkpinx" path="res://Art/Characters/Kilo/KnifeSphere/Dot.png" id="7_bewm8"]
+[ext_resource type="PackedScene" uid="uid://i328rfbscxky" path="res://Characters/Player/Kilo/knife.tscn" id="7_hdxxf"]
+[ext_resource type="Script" uid="uid://du3o0lctva0yg" path="res://Characters/Player/Kilo/PlayerAudioBus.gd" id="12_uda1d"]
+[ext_resource type="AudioStream" uid="uid://vmsyvqoj815p" path="res://sounds/kilo/kilo_walk.mp3" id="13_vg8tx"]
+[ext_resource type="AudioStream" uid="uid://26lt0tgbsopr" path="res://sounds/kilo/kilo_jump.mp3" id="14_if6u5"]
+[ext_resource type="AudioStream" uid="uid://bl2c2yk5h2ru6" path="res://sounds/kilo/kilo_dashmp3.mp3" id="15_5odpq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gdd3m"]
+radius = 9.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_neqdt"]
+atlas = ExtResource("2_t4q6h")
+region = Rect2(52, 0, 26, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg776"]
+atlas = ExtResource("2_t4q6h")
+region = Rect2(0, 0, 26, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8inc"]
+atlas = ExtResource("2_t4q6h")
+region = Rect2(26, 0, 26, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1uqg"]
+atlas = ExtResource("2_t4q6h")
+region = Rect2(52, 0, 26, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6a17"]
+atlas = ExtResource("1_8xp0j")
+region = Rect2(0, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h764b"]
+atlas = ExtResource("1_8xp0j")
+region = Rect2(44, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a577i"]
+atlas = ExtResource("1_8xp0j")
+region = Rect2(66, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04p2u"]
+atlas = ExtResource("1_8xp0j")
+region = Rect2(88, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ll00o"]
+atlas = ExtResource("1_8xp0j")
+region = Rect2(110, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bewm8"]
+atlas = ExtResource("1_8xp0j")
+region = Rect2(132, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdxxf"]
+atlas = ExtResource("1_8xp0j")
+region = Rect2(154, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5odpq"]
+atlas = ExtResource("3_h764b")
+region = Rect2(88, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgpyq"]
+atlas = ExtResource("3_h764b")
+region = Rect2(110, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lqpm"]
+atlas = ExtResource("3_h764b")
+region = Rect2(132, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwmhl"]
+atlas = ExtResource("3_h764b")
+region = Rect2(154, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33jv6"]
+atlas = ExtResource("3_h764b")
+region = Rect2(0, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o471"]
+atlas = ExtResource("3_h764b")
+region = Rect2(22, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibgt1"]
+atlas = ExtResource("3_h764b")
+region = Rect2(44, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvqjk"]
+atlas = ExtResource("3_h764b")
+region = Rect2(66, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4q6h"]
+atlas = ExtResource("3_k6a17")
+region = Rect2(0, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02kwj"]
+atlas = ExtResource("3_k6a17")
+region = Rect2(22, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7bno"]
+atlas = ExtResource("3_k6a17")
+region = Rect2(44, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1be3x"]
+atlas = ExtResource("3_k6a17")
+region = Rect2(66, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul2iu"]
+atlas = ExtResource("3_k6a17")
+region = Rect2(88, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uda1d"]
+atlas = ExtResource("3_k6a17")
+region = Rect2(110, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vg8tx"]
+atlas = ExtResource("3_k6a17")
+region = Rect2(132, 0, 22, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_if6u5"]
+atlas = ExtResource("3_k6a17")
+region = Rect2(154, 0, 22, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g03xw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_neqdt")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wg776")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8inc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1uqg")
+}],
+"loop": false,
+"name": &"dash_start",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6a17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h764b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h764b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a577i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04p2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ll00o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bewm8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdxxf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5odpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgpyq")
+}],
+"loop": true,
+"name": &"jump_air",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lqpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwmhl")
+}],
+"loop": false,
+"name": &"jump_land",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33jv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6o471")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibgt1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvqjk")
+}],
+"loop": false,
+"name": &"jump_start",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4q6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02kwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7bno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1be3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul2iu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uda1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vg8tx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_if6u5")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[node name="Kilo" type="CharacterBody2D" node_paths=PackedStringArray("Sprite", "Dash_Timer", "Audio") groups=["player"]]
+collision_layer = 2
+script = ExtResource("1_gdd3m")
+Sprite = NodePath("AnimatedSprite2D")
+Dash_Timer = NodePath("DashTimer")
+DashGhostScene = ExtResource("2_02kwj")
+Audio = NodePath("Audio")
+dash_speed = 450
+
+[node name="Hurtbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_gdd3m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_g03xw")
+animation = &"dash"
+
+[node name="KnifeSphere" type="Node2D" parent="." node_paths=PackedStringArray("aiming_box", "aiming_line", "cancel_delay_timer")]
+script = ExtResource("5_04p2u")
+controller_sensitivity = 500.0
+knife_scene = ExtResource("7_hdxxf")
+line_texture = ExtResource("7_bewm8")
+aiming_box = NodePath("AimingBox")
+aiming_line = NodePath("AimingLine")
+cancel_delay_timer = NodePath("CancelDelay")
+
+[node name="AimingBox" type="Node2D" parent="KnifeSphere" node_paths=PackedStringArray("aiming_line", "cancel_delay_timer")]
+script = ExtResource("6_ll00o")
+knife_scene = ExtResource("7_hdxxf")
+throw_speed = 1000.0
+max_speed = 700.0
+min_speed_ratio = 0.2
+max_line_length = 50.0
+line_width = 7.0
+line_texture = ExtResource("7_bewm8")
+aiming_line = NodePath("../AimingLine")
+cancel_delay_timer = NodePath("../CancelDelay")
+
+[node name="Sprite2D" type="Sprite2D" parent="KnifeSphere/AimingBox"]
+texture = ExtResource("5_a577i")
+
+[node name="CancelDelay" type="Timer" parent="KnifeSphere"]
+wait_time = 0.5
+one_shot = true
+
+[node name="AimingLine" type="Line2D" parent="KnifeSphere"]
+width = 100.0
+texture = ExtResource("7_bewm8")
+texture_mode = 1
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="Audio" type="Node" parent="."]
+script = ExtResource("12_uda1d")
+
+[node name="walk" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("13_vg8tx")
+
+[node name="jump" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("14_if6u5")
+volume_db = -10.894
+pitch_scale = 2.42
+
+[node name="dash" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("15_5odpq")
+
+[connection signal="timeout" from="KnifeSphere/CancelDelay" to="KnifeSphere/AimingBox" method="_on_cancel_delay_timeout"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
