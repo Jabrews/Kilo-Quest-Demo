@@ -3,10 +3,10 @@ A 2d Platformer inspired by games such as Shovel Knight and Hollow Knight.
 https://jabrews.itch.io/kilo-quest-demo
 
 ## Controls : 
-W, A, S, D : movement + jump
-SPACE : dash
-Right-click : open chest
-Left-click : charge the throwing knife
+- W, A, S, D : movement + jump
+- SPACE : dash
+- Right-click : open chest
+- Left-click : charge the throwing knife
 
 ## Install (Godot)
 ```bash
