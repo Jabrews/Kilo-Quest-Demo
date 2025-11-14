@@ -10,7 +10,7 @@ Left-click : charge the throwing knife
 
 ## Install (Godot)
 ```bash
-  git clone https://github.com/<your-username>/<your-project>.git
+  git clone https://github.com/<jabrews/Kilo-Quest-Demo.git
   ## Launch Godot Engine (version 4.x recommended).
   ## Click "Import" & navigate to the folder you just cloned.
   ## Select the project.godot file and open it.
